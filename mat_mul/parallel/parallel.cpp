@@ -10,13 +10,13 @@ int min(int a, int b) { return a < b ? a : b; }
 
 void matmultleaf(int mf, int ml, int nf, int nl, int pf, int pl, double *A, double *B, double *C, int M, int N, int P)
 {
-#pragma omp parallel for
+#pragma omp parallel for collapse(2)
     for (int i = mf; i < ml; i++)
         for (int j = nf; j < nl; j++)
         {
             double sum = 0;
-#pragma omp simd reduction(+ \
-                           : sum)
+#pragma omp reduction(+ \
+                      : sum)
             for (int k = pf; k < pl; k++)
             {
                 // sum += A[i * P + j] * B[j * P + k];
@@ -48,17 +48,19 @@ int main(int argc, char *argv[])
     double *B = (double *)malloc(P * N * sizeof(double));
     double *C = (double *)malloc(M * N * sizeof(double));
 
+#pragma omp parallel for schedule(static)
     for (i = 0; i < M * P; i++)
         A[i] = (double)(i + 1);
+#pragma omp parallel for schedule(static)
     for (i = 0; i < P * N; i++)
         B[i] = (double)(-i - 1);
+#pragma omp parallel for schedule(static)
     for (i = 0; i < M * N; i++)
         C[i] = 0.0;
-
     printf("Matrix Dimensions: M = %d  P = %d  N = %d\n\n", M, P, N);
 
     printf("Execute matmult parallel\n");
-    matmultleaf(0, M, 0, N, 0, P, A, B, C, M, N, P); // using B transpose
+    // matmultleaf(0, M, 0, N, 0, P, A, B, C, M, N, P); // using B transpose
     start = omp_get_wtime();
     for (i = 0; i < LOOP_COUNT; i++)
     {
