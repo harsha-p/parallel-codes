@@ -1,0 +1,347 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.2.0 Build 20210228_000000
+
+Compiler options: -qopenmp -qopenmp-simd -O3 -qopt-report=5 -qopt-report-phase=vec -xCORE-AVX2 -D LEVEL1 -o release/single_node
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at src/single_node.cpp(150,3)
+   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node.cpp(151,5) ]
+   remark #15305: vectorization support: vector length 4
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 6 
+   remark #15477: vector cost: 1.000 
+   remark #15478: estimated potential speedup: 5.620 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(150,3)
+<Remainder loop for vectorization>
+   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node.cpp(151,5) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 2.500
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 6 
+   remark #15477: vector cost: 1.000 
+   remark #15478: estimated potential speedup: 5.620 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(150,3)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(154,3)
+   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node.cpp(155,5) ]
+   remark #15305: vectorization support: vector length 4
+   remark #15399: vectorization support: unroll factor set to 2
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 7 
+   remark #15477: vector cost: 1.000 
+   remark #15478: estimated potential speedup: 6.480 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(154,3)
+<Remainder loop for vectorization>
+   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node.cpp(155,5) ]
+   remark #15305: vectorization support: vector length 2
+   remark #15309: vectorization support: normalized vectorization overhead 2.500
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 7 
+   remark #15477: vector cost: 1.000 
+   remark #15478: estimated potential speedup: 6.480 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(154,3)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(158,3)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at src/single_node.cpp(158,3)
+      remark #15388: vectorization support: reference C[i] has aligned access   [ src/single_node.cpp(159,5) ]
+      remark #15305: vectorization support: vector length 2
+      remark #15399: vectorization support: unroll factor set to 2
+      remark #15300: LOOP WAS VECTORIZED
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 4 
+      remark #15477: vector cost: 1.500 
+      remark #15478: estimated potential speedup: 2.660 
+      remark #15488: --- end vector cost summary ---
+   LOOP END
+
+   LOOP BEGIN at src/single_node.cpp(158,3)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(102,3) inlined into src/single_node.cpp(165,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/single_node.cpp(103,5) inlined into src/single_node.cpp(165,5)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/single_node.cpp(104,7) inlined into src/single_node.cpp(165,5)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/single_node.cpp(89,3) inlined into src/single_node.cpp(165,5)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/single_node.cpp(90,5) inlined into src/single_node.cpp(165,5)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/single_node.cpp(91,7) inlined into src/single_node.cpp(165,5)
+                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                  LOOP BEGIN at src/single_node.cpp(18,3) inlined into src/single_node.cpp(165,5)
+                     remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                     LOOP BEGIN at src/single_node.cpp(19,5) inlined into src/single_node.cpp(165,5)
+                        remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                        LOOP BEGIN at src/single_node.cpp(36,7) inlined into src/single_node.cpp(165,5)
+                           remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (46:16) and c0_0 (46:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+                        LOOP END
+                     LOOP END
+                  LOOP END
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/single_node.cpp(173,3)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node.cpp(175,7) ]
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node.cpp(177,5) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (175:7) and call:printf(const char *, ...) (177:5)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (177:5) and call:printf(const char *, ...) (175:7)
+
+   LOOP BEGIN at src/single_node.cpp(174,5)
+      remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node.cpp(175,7) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+
+   LOOP BEGIN at src/single_node.cpp(174,5)
+   LOOP END
+
+   LOOP BEGIN at src/single_node.cpp(174,5)
+   LOOP END
+
+   LOOP BEGIN at src/single_node.cpp(174,5)
+   LOOP END
+
+   LOOP BEGIN at src/single_node.cpp(174,5)
+   LOOP END
+
+   LOOP BEGIN at src/single_node.cpp(174,5)
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at src/single_node.cpp(164,3)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+
+   LOOP BEGIN at src/single_node.cpp(115,3) inlined into src/single_node.cpp(165,5)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+
+      LOOP BEGIN at src/single_node.cpp(116,5) inlined into src/single_node.cpp(165,5)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+
+         LOOP BEGIN at src/single_node.cpp(117,7) inlined into src/single_node.cpp(165,5)
+            remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: mat_mult_block(int, double *, double *, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at src/single_node.cpp(18,3)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/single_node.cpp(19,5)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/single_node.cpp(36,7)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+         remark #15346: vector dependence: assumed FLOW dependence between c0_0 (46:16) and c0_0 (46:16)
+         remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: tiled_level_3(int, int, double *, double *, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at src/single_node.cpp(89,3)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/single_node.cpp(90,5)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/single_node.cpp(91,7)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/single_node.cpp(18,3) inlined into src/single_node.cpp(92,9)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/single_node.cpp(19,5) inlined into src/single_node.cpp(92,9)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/single_node.cpp(36,7) inlined into src/single_node.cpp(92,9)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+                  remark #15346: vector dependence: assumed FLOW dependence between c0_0 (46:16) and c0_0 (46:16)
+                  remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: tiled_level_2(int, int, double *, double *, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at src/single_node.cpp(102,3)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/single_node.cpp(103,5)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/single_node.cpp(104,7)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/single_node.cpp(89,3) inlined into src/single_node.cpp(105,9)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/single_node.cpp(90,5) inlined into src/single_node.cpp(105,9)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/single_node.cpp(91,7) inlined into src/single_node.cpp(105,9)
+                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                  LOOP BEGIN at src/single_node.cpp(18,3) inlined into src/single_node.cpp(105,9)
+                     remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                     LOOP BEGIN at src/single_node.cpp(19,5) inlined into src/single_node.cpp(105,9)
+                        remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                        LOOP BEGIN at src/single_node.cpp(36,7) inlined into src/single_node.cpp(105,9)
+                           remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (46:16) and c0_0 (46:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+                        LOOP END
+                     LOOP END
+                  LOOP END
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
+
+Begin optimization report for: tiled_level_1(int, int, int, int, double *, double *, double *)
+
+    Report from: Vector optimizations [vec]
+
+
+LOOP BEGIN at src/single_node.cpp(102,3) inlined into src/single_node.cpp(118,9)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/single_node.cpp(103,5) inlined into src/single_node.cpp(118,9)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/single_node.cpp(104,7) inlined into src/single_node.cpp(118,9)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/single_node.cpp(89,3) inlined into src/single_node.cpp(118,9)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/single_node.cpp(90,5) inlined into src/single_node.cpp(118,9)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/single_node.cpp(91,7) inlined into src/single_node.cpp(118,9)
+                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                  LOOP BEGIN at src/single_node.cpp(18,3) inlined into src/single_node.cpp(118,9)
+                     remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                     LOOP BEGIN at src/single_node.cpp(19,5) inlined into src/single_node.cpp(118,9)
+                        remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+                        LOOP BEGIN at src/single_node.cpp(36,7) inlined into src/single_node.cpp(118,9)
+                           remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (46:16) and c0_0 (46:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (46:16) and c0_0 (46:16)
+                        LOOP END
+                     LOOP END
+                  LOOP END
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at src/single_node.cpp(115,3)
+   remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+
+   LOOP BEGIN at src/single_node.cpp(116,5)
+      remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+
+      LOOP BEGIN at src/single_node.cpp(117,7)
+         remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
+      LOOP END
+   LOOP END
+LOOP END
+===========================================================================
