@@ -13,6 +13,7 @@ void matmultleaf(int mf, int ml, int nf, int nl, int pf, int pl, double * __rest
     for (int j = nf; j < nl; j++) {
 		int j_b = j*P;
       double sum = 0;
+#pragma omp simd reduction(+:sum)
       for (int k = pf; k < pl; k++) {
         sum += A[i_a+k] * B[j_b + k];
       }
@@ -24,7 +25,7 @@ void matmultleaf(int mf, int ml, int nf, int nl, int pf, int pl, double * __rest
 void tiled(int mf, int ml, int nf, int nl, int pf, int pl, double * __restrict__ A, double * __restrict__ B, double* __restrict__ C)
 {
 	int ih,jh,kh,im,jm,km,il,jl,kl;
-	int tile1 =32, tile2=8;
+	int tile1 =64, tile2=16;
 #pragma omp parallel for collapse(2)
 	for (ih=mf; ih < ml ; ih+=tile1) {
 		for (jh = nf ; jh < nl ; jh +=tile1 ) {
@@ -74,7 +75,7 @@ int main(int argc, char *argv[]) {
   }
 
   for (i = 0; i < N * P; i++) {
-    BT[i] = (double)(-j - 1);
+    BT[i] = (double)(-i - 1);
   }
 
   for (i = 0; i < M * N; i++) {
