@@ -1,0 +1,14 @@
+mkl
+ipc 2.6
+dp gflops 80
+Non-fp 0
+micro architecture 66.7
+per write 42.8
+time 22.5 ms
+ written code
+ipc 1.8
+dp gflops 46
+Non-fp 5.3
+micro architecture 44.2
+per write 37.2
+time 40.5 ms
