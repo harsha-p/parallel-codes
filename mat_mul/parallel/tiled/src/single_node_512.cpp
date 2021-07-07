@@ -6,11 +6,16 @@
 #define min(a, b) (((a) < (b) ? (a) : (b)))
 #define max(a, b) (((a) > (b) ? (a) : (b)))
 
-int TILE1 = 128;
-int TILE2 = 64;
-int TILE3 = 32;
-// 145 for l3 t3=32 , t3016
-// 150 for l2 t3=32 t2=64
+int TILE1 = 64;
+int TILE2 = 128;
+int TILE3 = 64;
+// 31 for 64,64,64
+// 32 for 256,64,64
+// 34 for 128,64,64
+// 34 for 256,128,64
+// 36 for 64,32,32
+// 36 for 32,32,32
+// //40 for 128,32,32
 int M, N, P;
 
 void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
@@ -21,7 +26,7 @@ void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
 	int jloop = tile3>>5;
   for (int i = 0; i < iloop; i++) {
     int I = i << 2;
-    int i_n = I * N;
+    int i_n = (i<<2) * N;
     for (int j = 0; j < jloop; j++) {
       int J = j << 5;
       __m512d c0_0 = _mm512_load_pd(C + i_n + J );
@@ -169,9 +174,9 @@ int main(int argc, char *argv[]) {
   printf("Matrix Dimensions: M = %d  P = %d  N = %d\n\n", M, P, N);
   start = omp_get_wtime();
   for (i = 0; i < LOOP_COUNT; i++) {
-    tiled_level_1(TILE1, M, N, P, A, B, C);
+    /* tiled_level_1(TILE1, M, N, P, A, B, C); */
     /* tiled_level_2(1024 , TILE2 , A, B, C); */
-    /* tiled_level_3(1024, TILE3, A, B, C); */
+    tiled_level_3(1024, TILE3, A, B, C);
     /* mat_mult_block(1024, A, B, C); */
   }
   time = (omp_get_wtime() - start) / LOOP_COUNT;
