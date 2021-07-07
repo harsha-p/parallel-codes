@@ -8,13 +8,14 @@
 
 int TILE1 =  128;
 int TILE2 = 64;
-int TILE3 =  32;
+int TILE3 =  64;
 //145 for l3 t3=32 , t3016
 //150 for l2 t3=32 t2=64
 int M, N, P;
 
 void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
                     double *__restrict__ C) {
+#pragma omp simd
   for (int i = 0; i < tile3 / 4; i++) {
     for (int j = 0; j < tile3 / 32; j++) {
       __m512d c0_0 = _mm512_load_pd(C + ((4 * i + 0) * N) + j * 32 + 0);
@@ -81,12 +82,11 @@ void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
 
 void tiled_level_3(int tile2, int tile3, double *__restrict__ A,
                    double *__restrict__ B, double *__restrict__ C) {
-  int il, jl, kl;
-  for (il = 0; il < tile2; il += tile3) {
-    for (jl = 0; jl < tile2; jl += tile3) {
-      for (kl = 0; kl < tile2; kl += tile3) {
-        mat_mult_block(TILE3, A + il * P + jl, B + jl * P + kl,
-                       C + il * P + kl);
+   int t3t2 = tile2/tile3;
+  for (int ih = 0; ih < t3t2; ih++) {
+    for (int jh = 0; jh < t3t2; jh++) {
+      for (int kh = 0; kh < t3t2; kh++) {
+        mat_mult_block( TILE3, A + ih *tile3 * P + jh*tile3, B + jh*tile3 * P + kh*tile3, C + ih * tile3*P + kh*tile3);
       }
     }
   }
@@ -94,12 +94,12 @@ void tiled_level_3(int tile2, int tile3, double *__restrict__ A,
 
 void tiled_level_2(int tile1, int tile2, double *__restrict__ A,
                    double *__restrict__ B, double *__restrict__ C) {
-  int im, jm, km;
-  for (im = 0; im < tile1; im += tile2) {
-    for (jm = 0; jm < tile1; jm += tile2) {
-      for (km = 0; km < tile1; km += tile2) {
-        tiled_level_3(tile2, TILE3, A + im * P + jm, B + jm * P + km,
-                      C + im * P + km);
+  int t2t1 = tile1/tile2;
+  for (int im = 0; im < t2t1; im++) {
+    for (int jm = 0; jm < t2t1; jm++) {
+      for (int km = 0; km < t2t1; km++) {
+        tiled_level_3(tile2, TILE3, A + im *tile2 * P + jm*tile2, B + jm*tile2 * P + km*tile2,
+                      C + im * tile2*P + km*tile2);
       }
     }
   }
@@ -107,12 +107,12 @@ void tiled_level_2(int tile1, int tile2, double *__restrict__ A,
 
 void tiled_level_1(int tile1, int m, int n, int p, double *__restrict__ A,
                    double *__restrict__ B, double *__restrict__ C) {
-  int i, j, k;
-  for (i = 0; i < m; i += tile1) {
-    for (j = 0; j < n; j += tile1) {
-      for (k = 0; k < p; k += tile1) {
-        tiled_level_2(tile1, TILE2, A + i * P + j, B + j * P + k,
-                      C + i * P + k);
+  int im = m/tile1, jn = n/tile1, kp = p/tile1;
+  for (int i = 0; i < im; i++) {
+    for (int j = 0; j < jn; j++) {
+      for (int k = 0; k < kp; k++) {
+        tiled_level_2(tile1, TILE2, A + i*tile1 * P + j*tile1, B + j*tile1 * P + k*tile1,
+                      C + i*tile1 * P + k*tile1);
       }
     }
   }

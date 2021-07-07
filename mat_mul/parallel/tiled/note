@@ -1,14 +1,175 @@
-mkl
+== mkl ==
 ipc 2.6
 dp gflops 80
 Non-fp 0
 micro architecture 66.7
 per write 42.8
 time 22.5 ms
- written code
+
+== code == 
 ipc 1.8
 dp gflops 46
 Non-fp 5.3
 micro architecture 44.2
 per write 37.2
 time 40.5 ms
+
+== afternoon ==
+ipc 2
+dp gflops 51.8
+Non-fp 2.9
+micro architecture 48.6
+per write 31.6
+time 35.9 ms
+
+== best ==
+Singularity> vtune -collect performance-snapshot ./single_node_512 1024 1024 1024 100
+vtune: Collection started. To stop the collection, either press CTRL-C or enter from another console window: vtune -r /home/harsha.pathuri/parallel-codes/mat_mul/parallel/tiled/r000ps -command stop.
+Matrix Dimensions: M = 1024  P = 1024  N = 1024
+
+Time = 34.22306 milli seconds
+
+
+  -3.665E+13  -3.665E+13 -3.6651E+13 -3.6651E+13 -3.6651E+13 -3.6651E+13
+ -9.1572E+13 -9.1573E+13 -9.1573E+13 -9.1573E+13 -9.1573E+13 -9.1573E+13
+ -1.4649E+14 -1.4649E+14 -1.4649E+14  -1.465E+14  -1.465E+14  -1.465E+14
+ -1.4638E+14 -1.4638E+14 -1.4638E+14 -1.4638E+14 -1.4638E+14 -1.4638E+14
+ -2.5634E+14 -2.5634E+14 -2.5634E+14 -2.5634E+14 -2.5634E+14 -2.5634E+14
+ -3.1126E+14 -3.1126E+14 -3.1126E+14 -3.1126E+14 -3.1126E+14 -3.1126E+14
+vtune: Collection stopped.
+vtune: Using result path `/home/harsha.pathuri/parallel-codes/mat_mul/parallel/tiled/r000ps'
+vtune: Executing actions 75 % Generating a report                              Elapsed Time: 3.436s
+    IPC: 2.066
+    DP GFLOPS: 54.547
+    x87 GFLOPS: 0.000
+    Average CPU Frequency: 3.477 GHz
+Effective Logical Core Utilization: 1.0% (0.988 out of 96)
+ | The metric value is low, which may signal a poor logical CPU cores
+ | utilization. Consider improving physical core utilization as the first step
+ | and then look at opportunities to utilize logical cores, which in some cases
+ | can improve processor throughput and overall performance of multi-threaded
+ | applications.
+ |
+    Effective Physical Core Utilization: 2.1% (0.986 out of 48)
+     | The metric value is low, which may signal a poor physical CPU cores
+     | utilization caused by:
+     |     - load imbalance
+     |     - threading runtime overhead
+     |     - contended synchronization
+     |     - thread/process underutilization
+     |     - incorrect affinity that utilizes logical cores instead of physical
+     |       cores
+     | Explore sub-metrics to estimate the efficiency of MPI and OpenMP
+     | parallelism or run the Locks and Waits analysis to identify parallel
+     | bottlenecks for other parallel runtimes.
+     |
+Microarchitecture Usage: 49.8% of Pipeline Slots
+ | You code efficiency on this platform is too low.
+ |
+ | Possible cause: memory stalls, instruction starvation, branch misprediction
+ | or long latency instructions.
+ |
+ | Next steps: Run Microarchitecture Exploration analysis to identify the cause
+ | of the low microarchitecture usage efficiency.
+ |
+    Retiring: 49.8% of Pipeline Slots
+    Front-End Bound: 2.9% of Pipeline Slots
+    Back-End Bound: 45.5% of Pipeline Slots
+     | A significant portion of pipeline slots are remaining empty. When
+     | operations take too long in the back-end, they introduce bubbles in the
+     | pipeline that ultimately cause fewer pipeline slots containing useful
+     | work to be retired per cycle than the machine is capable to support. This
+     | opportunity cost results in slower execution. Long-latency operations
+     | like divides and memory operations can cause this, as can too many
+     | operations being directed to a single execution port (for example, more
+     | multiply operations arriving in the back-end per cycle than the execution
+     | unit can support).
+     |
+        Memory Bound: 21.8% of Pipeline Slots
+         | The metric value is high. This can indicate that the significant
+         | fraction of execution pipeline slots could be stalled due to demand
+         | memory load and stores. Use Memory Access analysis to have the metric
+         | breakdown by memory hierarchy, memory bandwidth information,
+         | correlation by memory objects.
+         |
+        Core Bound: 23.8% of Pipeline Slots
+         | This metric represents how much Core non-memory issues were of a
+         | bottleneck. Shortage in hardware compute resources, or dependencies
+         | software's instructions are both categorized under Core Bound. Hence
+         | it may indicate the machine ran out of an OOO resources, certain
+         | execution units are overloaded or dependencies in program's data- or
+         | instruction- flow are limiting the performance (e.g. FP-chained long-
+         | latency arithmetic operations).
+         |
+    Bad Speculation: 1.8% of Pipeline Slots
+Memory Bound: 21.8% of Pipeline Slots
+ | The metric value is high. This can indicate that the significant fraction of
+ | execution pipeline slots could be stalled due to demand memory load and
+ | stores. Use Memory Access analysis to have the metric breakdown by memory
+ | hierarchy, memory bandwidth information, correlation by memory objects.
+ |
+    L1 Bound: 0.5% of Clockticks
+    L2 Bound: 3.6% of Clockticks
+    L3 Bound: 14.5% of Clockticks
+     | This metric shows how often CPU was stalled on L3 cache, or contended
+     | with a sibling Core. Avoiding cache misses (L2 misses/L3 hits) improves
+     | the latency and increases performance.
+     |
+    DRAM Bound: 7.0% of Clockticks
+        Memory Bandwidth: 36.4% of Clockticks
+    Store Bound: 0.0% of Clockticks
+    NUMA: % of Remote Accesses: 0.0%
+Vectorization: 100.0% of Packed FP Operations
+    Instruction Mix
+        SP FLOPs: 0.0% of uOps
+            Packed: 0.0% from SP FP
+                128-bit: 0.0% from SP FP
+                256-bit: 0.0% from SP FP
+                512-bit: 0.0% from SP FP
+            Scalar: 0.0% from SP FP
+        DP FLOPs: 99.8% of uOps
+            Packed: 100.0% from DP FP
+                128-bit: 0.0% from DP FP
+                256-bit: 0.0% from DP FP
+                512-bit: 100.0% from DP FP
+            Scalar: 0.0% from DP FP
+        x87 FLOPs: 0.0% of uOps
+        Non-FP: 0.2% of uOps
+    FP Arith/Mem Rd Instr. Ratio: 3.310
+    FP Arith/Mem Wr Instr. Ratio: 84.138
+Collection and Platform Info
+    Application Command Line: ./single_node_512 "1024" "1024" "1024" "100"
+    Operating System: 4.18.0-240.10.1.el8_3.x86_64 \S Kernel \r on an \m
+    Computer Name: node03.local
+    Result Size: 3.5 MB
+    Collection start time: 09:06:50 07/07/2021 UTC
+    Collection stop time: 09:06:53 07/07/2021 UTC
+    Collector Type: Driverless Perf per-process counting
+    CPU
+        Name: Intel(R) Xeon(R) Processor code named Cascadelake
+        Frequency: 2.694 GHz
+        Logical CPU Count: 96
+        Cache Allocation Technology
+            Level 2 capability: not detected
+            Level 3 capability: available
+
+Recommendations:
+    Hotspots: Start with Hotspots analysis to understand the efficiency of your algorithm.
+     | Use Hotspots analysis to identify the most time consuming functions.
+     | Drill down to see the time spent on every line of code.
+    Threading: There is poor utilization of logical CPU cores (1.0%) in your application.
+     |  Use Threading to explore more opportunities to increase parallelism in
+     | your application.
+    Memory Access: The Memory Bound metric is high  (21.8%). A significant fraction of execution pipeline slots could be stalled due to demand memory load and stores.
+     | Use Memory Access analysis to measure metrics that can identify memory
+     | access issues.
+    Microarchitecture Exploration: There is low microarchitecture usage (49.8%) of available hardware resources.
+     | Run Microarchitecture Exploration analysis to analyze CPU
+     | microarchitecture bottlenecks that can affect application performance.
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: vtune -report summary -report-knob show-issues=false -r <my_result_dir>.
+Alternatively, you may view the report in the csv format: vtune -report
+<report_name> -format=csv.
+vtune: Executing actions 100 % done
+
