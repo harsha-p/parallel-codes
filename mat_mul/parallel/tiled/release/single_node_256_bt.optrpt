@@ -4,30 +4,30 @@ See "https://software.intel.com/en-us/intel-advisor-xe" for details.
 
 Intel(R) C Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.2.0 Build 20210228_000000
 
-Compiler options: -qopenmp -qopenmp-simd -Ofast -qopt-report=5 -qopt-report-phase=vec,openmp,par -xCORE-AVX2 -o release/single_node_256
+Compiler options: -qopenmp -qopenmp-simd -Ofast -qopt-report=5 -qopt-report-phase=vec,openmp,par -xCORE-AVX2 -o release/single_node_256_bt
 
 Begin optimization report for: main(int, char **)
 
     Report from: OpenMP optimizations [openmp]
 
-OpenMP Construct at src/single_node_256.cpp(100,3) inlined into src/single_node_256.cpp(177,7)
+OpenMP Construct at src/single_node_256_bt.cpp(100,3) inlined into src/single_node_256_bt.cpp(177,7)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(99,1) inlined into src/single_node_256.cpp(177,7)
+OpenMP Construct at src/single_node_256_bt.cpp(99,1) inlined into src/single_node_256_bt.cpp(177,7)
 remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
-OpenMP Construct at src/single_node_256.cpp(116,7) inlined into src/single_node_256.cpp(183,7)
+OpenMP Construct at src/single_node_256_bt.cpp(116,7) inlined into src/single_node_256_bt.cpp(183,7)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(115,5) inlined into src/single_node_256.cpp(183,7)
+OpenMP Construct at src/single_node_256_bt.cpp(115,5) inlined into src/single_node_256_bt.cpp(183,7)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(114,3) inlined into src/single_node_256.cpp(183,7)
+OpenMP Construct at src/single_node_256_bt.cpp(114,3) inlined into src/single_node_256_bt.cpp(183,7)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(113,1) inlined into src/single_node_256.cpp(183,7)
+OpenMP Construct at src/single_node_256_bt.cpp(113,1) inlined into src/single_node_256_bt.cpp(183,7)
 remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
 
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_256.cpp(151,3)
-   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_256.cpp(152,5) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(151,3)
+   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_256_bt.cpp(152,5) ]
    remark #15305: vectorization support: vector length 4
    remark #15399: vectorization support: unroll factor set to 2
    remark #15300: LOOP WAS VECTORIZED
@@ -40,9 +40,9 @@ LOOP BEGIN at src/single_node_256.cpp(151,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(151,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(151,3)
 <Remainder loop for vectorization>
-   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_256.cpp(152,5) ]
+   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_256_bt.cpp(152,5) ]
    remark #15305: vectorization support: vector length 2
    remark #15309: vectorization support: normalized vectorization overhead 2.500
    remark #15301: REMAINDER LOOP WAS VECTORIZED
@@ -55,12 +55,12 @@ LOOP BEGIN at src/single_node_256.cpp(151,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(151,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(151,3)
 <Remainder loop for vectorization>
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(155,3)
-   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_256.cpp(156,5) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(155,3)
+   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_256_bt.cpp(156,5) ]
    remark #15305: vectorization support: vector length 4
    remark #15399: vectorization support: unroll factor set to 2
    remark #15300: LOOP WAS VECTORIZED
@@ -73,9 +73,9 @@ LOOP BEGIN at src/single_node_256.cpp(155,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(155,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(155,3)
 <Remainder loop for vectorization>
-   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_256.cpp(156,5) ]
+   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_256_bt.cpp(156,5) ]
    remark #15305: vectorization support: vector length 2
    remark #15309: vectorization support: normalized vectorization overhead 2.500
    remark #15301: REMAINDER LOOP WAS VECTORIZED
@@ -88,15 +88,15 @@ LOOP BEGIN at src/single_node_256.cpp(155,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(155,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(155,3)
 <Remainder loop for vectorization>
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(159,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(159,3)
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
-   LOOP BEGIN at src/single_node_256.cpp(159,3)
-      remark #15388: vectorization support: reference C[i] has aligned access   [ src/single_node_256.cpp(160,5) ]
+   LOOP BEGIN at src/single_node_256_bt.cpp(159,3)
+      remark #15388: vectorization support: reference C[i] has aligned access   [ src/single_node_256_bt.cpp(160,5) ]
       remark #15305: vectorization support: vector length 2
       remark #15399: vectorization support: unroll factor set to 2
       remark #15300: LOOP WAS VECTORIZED
@@ -108,30 +108,30 @@ LOOP BEGIN at src/single_node_256.cpp(159,3)
       remark #15488: --- end vector cost summary ---
    LOOP END
 
-   LOOP BEGIN at src/single_node_256.cpp(159,3)
+   LOOP BEGIN at src/single_node_256_bt.cpp(159,3)
    <Remainder loop for vectorization>
    LOOP END
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(170,5)
+LOOP BEGIN at src/single_node_256_bt.cpp(170,5)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_256.cpp(86,3) inlined into src/single_node_256.cpp(171,7)
+   LOOP BEGIN at src/single_node_256_bt.cpp(86,3) inlined into src/single_node_256_bt.cpp(171,7)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_256.cpp(87,5) inlined into src/single_node_256.cpp(171,7)
+      LOOP BEGIN at src/single_node_256_bt.cpp(87,5) inlined into src/single_node_256_bt.cpp(171,7)
          remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-         LOOP BEGIN at src/single_node_256.cpp(88,7) inlined into src/single_node_256.cpp(171,7)
+         LOOP BEGIN at src/single_node_256_bt.cpp(88,7) inlined into src/single_node_256_bt.cpp(171,7)
             remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-            LOOP BEGIN at src/single_node_256.cpp(19,3) inlined into src/single_node_256.cpp(171,7)
+            LOOP BEGIN at src/single_node_256_bt.cpp(19,3) inlined into src/single_node_256_bt.cpp(171,7)
                remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-               LOOP BEGIN at src/single_node_256.cpp(20,5) inlined into src/single_node_256.cpp(171,7)
+               LOOP BEGIN at src/single_node_256_bt.cpp(20,5) inlined into src/single_node_256_bt.cpp(171,7)
                   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-                  LOOP BEGIN at src/single_node_256.cpp(37,7) inlined into src/single_node_256.cpp(171,7)
+                  LOOP BEGIN at src/single_node_256_bt.cpp(37,7) inlined into src/single_node_256_bt.cpp(171,7)
                      remark #15344: loop was not vectorized: vector dependence prevents vectorization
                      remark #15346: vector dependence: assumed ANTI dependence between c0_0 (43:16) and c0_0 (43:16)
                      remark #15346: vector dependence: assumed FLOW dependence between c0_0 (43:16) and c0_0 (43:16)
@@ -144,67 +144,67 @@ LOOP BEGIN at src/single_node_256.cpp(170,5)
    LOOP END
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(176,5)
-   remark #15382: vectorization support: call to function __kmpc_ok_to_fork cannot be vectorized   [ src/single_node_256.cpp(99,1) ]
-   remark #15382: vectorization support: call to function __kmpc_fork_call cannot be vectorized   [ src/single_node_256.cpp(99,1) ]
-   remark #15382: vectorization support: call to function __kmpc_serialized_parallel cannot be vectorized   [ src/single_node_256.cpp(99,1) ]
-   remark #15382: vectorization support: call to function .0 cannot be vectorized   [ src/single_node_256.cpp(99,1) ]
-   remark #15382: vectorization support: call to function __kmpc_end_serialized_parallel cannot be vectorized   [ src/single_node_256.cpp(99,1) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(176,5)
+   remark #15382: vectorization support: call to function __kmpc_ok_to_fork cannot be vectorized   [ src/single_node_256_bt.cpp(99,1) ]
+   remark #15382: vectorization support: call to function __kmpc_fork_call cannot be vectorized   [ src/single_node_256_bt.cpp(99,1) ]
+   remark #15382: vectorization support: call to function __kmpc_serialized_parallel cannot be vectorized   [ src/single_node_256_bt.cpp(99,1) ]
+   remark #15382: vectorization support: call to function .0 cannot be vectorized   [ src/single_node_256_bt.cpp(99,1) ]
+   remark #15382: vectorization support: call to function __kmpc_end_serialized_parallel cannot be vectorized   [ src/single_node_256_bt.cpp(99,1) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
    remark #15346: vector dependence: assumed OUTPUT dependence between tile1 (177:7) and tile1 (99:1)
    remark #15346: vector dependence: assumed OUTPUT dependence between tile1 (99:1) and tile1 (177:7)
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(182,5)
-   remark #15382: vectorization support: call to function __kmpc_ok_to_fork cannot be vectorized   [ src/single_node_256.cpp(113,1) ]
-   remark #15382: vectorization support: call to function __kmpc_fork_call cannot be vectorized   [ src/single_node_256.cpp(113,1) ]
-   remark #15382: vectorization support: call to function __kmpc_serialized_parallel cannot be vectorized   [ src/single_node_256.cpp(113,1) ]
-   remark #15382: vectorization support: call to function .1 cannot be vectorized   [ src/single_node_256.cpp(113,1) ]
-   remark #15382: vectorization support: call to function __kmpc_end_serialized_parallel cannot be vectorized   [ src/single_node_256.cpp(113,1) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(182,5)
+   remark #15382: vectorization support: call to function __kmpc_ok_to_fork cannot be vectorized   [ src/single_node_256_bt.cpp(113,1) ]
+   remark #15382: vectorization support: call to function __kmpc_fork_call cannot be vectorized   [ src/single_node_256_bt.cpp(113,1) ]
+   remark #15382: vectorization support: call to function __kmpc_serialized_parallel cannot be vectorized   [ src/single_node_256_bt.cpp(113,1) ]
+   remark #15382: vectorization support: call to function .1 cannot be vectorized   [ src/single_node_256_bt.cpp(113,1) ]
+   remark #15382: vectorization support: call to function __kmpc_end_serialized_parallel cannot be vectorized   [ src/single_node_256_bt.cpp(113,1) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
    remark #15346: vector dependence: assumed OUTPUT dependence between tile1 (183:7) and tile1 (113:1)
    remark #15346: vector dependence: assumed OUTPUT dependence between tile1 (113:1) and tile1 (183:7)
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(188,5)
-   remark #15382: vectorization support: call to function mat_mult_block(int, double *, double *, double *) cannot be vectorized   [ src/single_node_256.cpp(189,7) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(188,5)
+   remark #15382: vectorization support: call to function mat_mult_block(int, double *, double *, double *) cannot be vectorized   [ src/single_node_256_bt.cpp(189,7) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(200,3)
-   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_256.cpp(202,7) ]
-   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_256.cpp(204,5) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(200,3)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_256_bt.cpp(202,7) ]
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_256_bt.cpp(204,5) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
    remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (202:7) and call:printf(const char *, ...) (204:5)
    remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (204:5) and call:printf(const char *, ...) (202:7)
 
-   LOOP BEGIN at src/single_node_256.cpp(201,5)
-      remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_256.cpp(202,7) ]
+   LOOP BEGIN at src/single_node_256_bt.cpp(201,5)
+      remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_256_bt.cpp(202,7) ]
       remark #15344: loop was not vectorized: vector dependence prevents vectorization
    LOOP END
 
-   LOOP BEGIN at src/single_node_256.cpp(201,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(201,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_256.cpp(201,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(201,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_256.cpp(201,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(201,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_256.cpp(201,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(201,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_256.cpp(201,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(201,5)
    LOOP END
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(113,1) inlined into src/single_node_256.cpp(183,7)
-   remark #15382: vectorization support: call to function tiled_level_2(int, int, double *, double *, double *) cannot be vectorized   [ src/single_node_256.cpp(117,9) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(113,1) inlined into src/single_node_256_bt.cpp(183,7)
+   remark #15382: vectorization support: call to function tiled_level_2(int, int, double *, double *, double *) cannot be vectorized   [ src/single_node_256_bt.cpp(117,9) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(113,1) inlined into src/single_node_256.cpp(183,7)
+LOOP BEGIN at src/single_node_256_bt.cpp(113,1) inlined into src/single_node_256_bt.cpp(183,7)
    remark #15305: vectorization support: vector length 4
    remark #15309: vectorization support: normalized vectorization overhead 0.013
    remark #15300: LOOP WAS VECTORIZED
@@ -216,35 +216,35 @@ LOOP BEGIN at src/single_node_256.cpp(113,1) inlined into src/single_node_256.cp
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(113,1) inlined into src/single_node_256.cpp(183,7)
+LOOP BEGIN at src/single_node_256_bt.cpp(113,1) inlined into src/single_node_256_bt.cpp(183,7)
 <Remainder loop for vectorization>
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(100,3) inlined into src/single_node_256.cpp(177,7)
+LOOP BEGIN at src/single_node_256_bt.cpp(100,3) inlined into src/single_node_256_bt.cpp(177,7)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_256.cpp(101,5) inlined into src/single_node_256.cpp(177,7)
+   LOOP BEGIN at src/single_node_256_bt.cpp(101,5) inlined into src/single_node_256_bt.cpp(177,7)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_256.cpp(102,7) inlined into src/single_node_256.cpp(177,7)
+      LOOP BEGIN at src/single_node_256_bt.cpp(102,7) inlined into src/single_node_256_bt.cpp(177,7)
          remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-         LOOP BEGIN at src/single_node_256.cpp(86,3) inlined into src/single_node_256.cpp(177,7)
+         LOOP BEGIN at src/single_node_256_bt.cpp(86,3) inlined into src/single_node_256_bt.cpp(177,7)
             remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-            LOOP BEGIN at src/single_node_256.cpp(87,5) inlined into src/single_node_256.cpp(177,7)
+            LOOP BEGIN at src/single_node_256_bt.cpp(87,5) inlined into src/single_node_256_bt.cpp(177,7)
                remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-               LOOP BEGIN at src/single_node_256.cpp(88,7) inlined into src/single_node_256.cpp(177,7)
+               LOOP BEGIN at src/single_node_256_bt.cpp(88,7) inlined into src/single_node_256_bt.cpp(177,7)
                   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-                  LOOP BEGIN at src/single_node_256.cpp(19,3) inlined into src/single_node_256.cpp(177,7)
+                  LOOP BEGIN at src/single_node_256_bt.cpp(19,3) inlined into src/single_node_256_bt.cpp(177,7)
                      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-                     LOOP BEGIN at src/single_node_256.cpp(20,5) inlined into src/single_node_256.cpp(177,7)
+                     LOOP BEGIN at src/single_node_256_bt.cpp(20,5) inlined into src/single_node_256_bt.cpp(177,7)
                         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-                        LOOP BEGIN at src/single_node_256.cpp(37,7) inlined into src/single_node_256.cpp(177,7)
+                        LOOP BEGIN at src/single_node_256_bt.cpp(37,7) inlined into src/single_node_256_bt.cpp(177,7)
                            remark #15344: loop was not vectorized: vector dependence prevents vectorization
                            remark #15346: vector dependence: assumed ANTI dependence between c0_0 (43:16) and c0_0 (43:16)
                            remark #15346: vector dependence: assumed FLOW dependence between c0_0 (43:16) and c0_0 (43:16)
@@ -264,39 +264,39 @@ Begin optimization report for: tiled_level_2(int, int, double *, double *, doubl
 
     Report from: OpenMP optimizations [openmp]
 
-OpenMP Construct at src/single_node_256.cpp(100,3)
+OpenMP Construct at src/single_node_256_bt.cpp(100,3)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(99,1)
+OpenMP Construct at src/single_node_256_bt.cpp(99,1)
 remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
 
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_256.cpp(100,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(100,3)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_256.cpp(101,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(101,5)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_256.cpp(102,7)
+      LOOP BEGIN at src/single_node_256_bt.cpp(102,7)
          remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-         LOOP BEGIN at src/single_node_256.cpp(86,3) inlined into src/single_node_256.cpp(103,9)
+         LOOP BEGIN at src/single_node_256_bt.cpp(86,3) inlined into src/single_node_256_bt.cpp(103,9)
             remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-            LOOP BEGIN at src/single_node_256.cpp(87,5) inlined into src/single_node_256.cpp(103,9)
+            LOOP BEGIN at src/single_node_256_bt.cpp(87,5) inlined into src/single_node_256_bt.cpp(103,9)
                remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-               LOOP BEGIN at src/single_node_256.cpp(88,7) inlined into src/single_node_256.cpp(103,9)
+               LOOP BEGIN at src/single_node_256_bt.cpp(88,7) inlined into src/single_node_256_bt.cpp(103,9)
                   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-                  LOOP BEGIN at src/single_node_256.cpp(19,3) inlined into src/single_node_256.cpp(103,9)
+                  LOOP BEGIN at src/single_node_256_bt.cpp(19,3) inlined into src/single_node_256_bt.cpp(103,9)
                      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-                     LOOP BEGIN at src/single_node_256.cpp(20,5) inlined into src/single_node_256.cpp(103,9)
+                     LOOP BEGIN at src/single_node_256_bt.cpp(20,5) inlined into src/single_node_256_bt.cpp(103,9)
                         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-                        LOOP BEGIN at src/single_node_256.cpp(37,7) inlined into src/single_node_256.cpp(103,9)
+                        LOOP BEGIN at src/single_node_256_bt.cpp(37,7) inlined into src/single_node_256_bt.cpp(103,9)
                            remark #15344: loop was not vectorized: vector dependence prevents vectorization
                            remark #15346: vector dependence: assumed ANTI dependence between c0_0 (43:16) and c0_0 (43:16)
                            remark #15346: vector dependence: assumed FLOW dependence between c0_0 (43:16) and c0_0 (43:16)
@@ -317,13 +317,13 @@ Begin optimization report for: mat_mult_block(int, double *, double *, double *)
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_256.cpp(19,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(19,3)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_256.cpp(20,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(20,5)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_256.cpp(37,7)
+      LOOP BEGIN at src/single_node_256_bt.cpp(37,7)
          remark #15344: loop was not vectorized: vector dependence prevents vectorization
          remark #15346: vector dependence: assumed ANTI dependence between c0_0 (43:16) and c0_0 (43:16)
          remark #15346: vector dependence: assumed FLOW dependence between c0_0 (43:16) and c0_0 (43:16)
@@ -338,22 +338,22 @@ Begin optimization report for: tiled_level_3(int, int, double *, double *, doubl
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_256.cpp(86,3)
+LOOP BEGIN at src/single_node_256_bt.cpp(86,3)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_256.cpp(87,5)
+   LOOP BEGIN at src/single_node_256_bt.cpp(87,5)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_256.cpp(88,7)
+      LOOP BEGIN at src/single_node_256_bt.cpp(88,7)
          remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-         LOOP BEGIN at src/single_node_256.cpp(19,3) inlined into src/single_node_256.cpp(89,9)
+         LOOP BEGIN at src/single_node_256_bt.cpp(19,3) inlined into src/single_node_256_bt.cpp(89,9)
             remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-            LOOP BEGIN at src/single_node_256.cpp(20,5) inlined into src/single_node_256.cpp(89,9)
+            LOOP BEGIN at src/single_node_256_bt.cpp(20,5) inlined into src/single_node_256_bt.cpp(89,9)
                remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-               LOOP BEGIN at src/single_node_256.cpp(37,7) inlined into src/single_node_256.cpp(89,9)
+               LOOP BEGIN at src/single_node_256_bt.cpp(37,7) inlined into src/single_node_256_bt.cpp(89,9)
                   remark #15344: loop was not vectorized: vector dependence prevents vectorization
                   remark #15346: vector dependence: assumed ANTI dependence between c0_0 (43:16) and c0_0 (43:16)
                   remark #15346: vector dependence: assumed FLOW dependence between c0_0 (43:16) and c0_0 (43:16)
@@ -370,24 +370,24 @@ Begin optimization report for: tiled_level_1(int, int, int, int, double *, doubl
 
     Report from: OpenMP optimizations [openmp]
 
-OpenMP Construct at src/single_node_256.cpp(116,7)
+OpenMP Construct at src/single_node_256_bt.cpp(116,7)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(115,5)
+OpenMP Construct at src/single_node_256_bt.cpp(115,5)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(114,3)
+OpenMP Construct at src/single_node_256_bt.cpp(114,3)
 remark #16204: OpenMP multithreaded code generation for SINGLE was successful
-OpenMP Construct at src/single_node_256.cpp(113,1)
+OpenMP Construct at src/single_node_256_bt.cpp(113,1)
 remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
 
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_256.cpp(113,1)
-   remark #15382: vectorization support: call to function tiled_level_2(int, int, double *, double *, double *) cannot be vectorized   [ src/single_node_256.cpp(117,9) ]
+LOOP BEGIN at src/single_node_256_bt.cpp(113,1)
+   remark #15382: vectorization support: call to function tiled_level_2(int, int, double *, double *, double *) cannot be vectorized   [ src/single_node_256_bt.cpp(117,9) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(113,1)
+LOOP BEGIN at src/single_node_256_bt.cpp(113,1)
    remark #15305: vectorization support: vector length 4
    remark #15309: vectorization support: normalized vectorization overhead 0.013
    remark #15300: LOOP WAS VECTORIZED
@@ -399,7 +399,7 @@ LOOP BEGIN at src/single_node_256.cpp(113,1)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_256.cpp(113,1)
+LOOP BEGIN at src/single_node_256_bt.cpp(113,1)
 <Remainder loop for vectorization>
 LOOP END
 ===========================================================================

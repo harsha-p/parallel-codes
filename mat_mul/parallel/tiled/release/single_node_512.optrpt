@@ -11,8 +11,8 @@ Begin optimization report for: main(int, char **)
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_512.cpp(165,3)
-   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_512.cpp(166,5) ]
+LOOP BEGIN at src/single_node_512.cpp(131,3)
+   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_512.cpp(132,5) ]
    remark #15305: vectorization support: vector length 8
    remark #15399: vectorization support: unroll factor set to 2
    remark #15300: LOOP WAS VECTORIZED
@@ -25,9 +25,9 @@ LOOP BEGIN at src/single_node_512.cpp(165,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(165,3)
+LOOP BEGIN at src/single_node_512.cpp(131,3)
 <Remainder loop for vectorization>
-   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_512.cpp(166,5) ]
+   remark #15388: vectorization support: reference A[i] has aligned access   [ src/single_node_512.cpp(132,5) ]
    remark #15305: vectorization support: vector length 8
    remark #15309: vectorization support: normalized vectorization overhead 1.000
    remark #15301: REMAINDER LOOP WAS VECTORIZED
@@ -40,8 +40,8 @@ LOOP BEGIN at src/single_node_512.cpp(165,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(169,3)
-   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_512.cpp(170,5) ]
+LOOP BEGIN at src/single_node_512.cpp(135,3)
+   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_512.cpp(136,5) ]
    remark #15305: vectorization support: vector length 8
    remark #15399: vectorization support: unroll factor set to 2
    remark #15300: LOOP WAS VECTORIZED
@@ -54,9 +54,9 @@ LOOP BEGIN at src/single_node_512.cpp(169,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(169,3)
+LOOP BEGIN at src/single_node_512.cpp(135,3)
 <Remainder loop for vectorization>
-   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_512.cpp(170,5) ]
+   remark #15388: vectorization support: reference B[i] has aligned access   [ src/single_node_512.cpp(136,5) ]
    remark #15305: vectorization support: vector length 8
    remark #15309: vectorization support: normalized vectorization overhead 1.000
    remark #15301: REMAINDER LOOP WAS VECTORIZED
@@ -69,11 +69,11 @@ LOOP BEGIN at src/single_node_512.cpp(169,3)
    remark #15488: --- end vector cost summary ---
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(173,3)
+LOOP BEGIN at src/single_node_512.cpp(139,3)
    remark #15542: loop was not vectorized: inner loop was already vectorized
 
-   LOOP BEGIN at src/single_node_512.cpp(173,3)
-      remark #15388: vectorization support: reference C[i] has aligned access   [ src/single_node_512.cpp(174,5) ]
+   LOOP BEGIN at src/single_node_512.cpp(139,3)
+      remark #15388: vectorization support: reference C[i] has aligned access   [ src/single_node_512.cpp(140,5) ]
       remark #15305: vectorization support: vector length 8
       remark #15300: LOOP WAS VECTORIZED
       remark #15449: unmasked aligned unit stride stores: 1 
@@ -84,9 +84,9 @@ LOOP BEGIN at src/single_node_512.cpp(173,3)
       remark #15488: --- end vector cost summary ---
    LOOP END
 
-   LOOP BEGIN at src/single_node_512.cpp(173,3)
+   LOOP BEGIN at src/single_node_512.cpp(139,3)
    <Remainder loop for vectorization>
-      remark #15388: vectorization support: reference C[i] has aligned access   [ src/single_node_512.cpp(174,5) ]
+      remark #15388: vectorization support: reference C[i] has aligned access   [ src/single_node_512.cpp(140,5) ]
       remark #15305: vectorization support: vector length 8
       remark #15309: vectorization support: normalized vectorization overhead 1.222
       remark #15301: REMAINDER LOOP WAS VECTORIZED
@@ -99,31 +99,43 @@ LOOP BEGIN at src/single_node_512.cpp(173,3)
    LOOP END
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(184,5)
-   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+LOOP BEGIN at src/single_node_512.cpp(151,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+   remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-   LOOP BEGIN at src/single_node_512.cpp(99,3) inlined into src/single_node_512.cpp(185,7)
-      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   LOOP BEGIN at src/single_node_512.cpp(65,3) inlined into src/single_node_512.cpp(152,7)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+      remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-      LOOP BEGIN at src/single_node_512.cpp(100,5) inlined into src/single_node_512.cpp(185,7)
-         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+      LOOP BEGIN at src/single_node_512.cpp(66,5) inlined into src/single_node_512.cpp(152,7)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+         remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-         LOOP BEGIN at src/single_node_512.cpp(101,7) inlined into src/single_node_512.cpp(185,7)
-            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+         LOOP BEGIN at src/single_node_512.cpp(67,7) inlined into src/single_node_512.cpp(152,7)
+            remark #15344: loop was not vectorized: vector dependence prevents vectorization
+            remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+            remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-            LOOP BEGIN at src/single_node_512.cpp(28,3) inlined into src/single_node_512.cpp(185,7)
-               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+            LOOP BEGIN at src/single_node_512.cpp(18,3) inlined into src/single_node_512.cpp(152,7)
+               remark #15344: loop was not vectorized: vector dependence prevents vectorization
+               remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+               remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-               LOOP BEGIN at src/single_node_512.cpp(31,5) inlined into src/single_node_512.cpp(185,7)
-                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+               LOOP BEGIN at src/single_node_512.cpp(21,5) inlined into src/single_node_512.cpp(152,7)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                  remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                  LOOP BEGIN at src/single_node_512.cpp(49,7) inlined into src/single_node_512.cpp(185,7)
+                  LOOP BEGIN at src/single_node_512.cpp(31,7) inlined into src/single_node_512.cpp(152,7)
                   <Peeled>
                      remark #15344: loop was not vectorized: vector dependence prevents vectorization
-                     remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
-                     remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                     remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                     remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
+                     remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
+                     remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                     remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                     remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
                   LOOP END
                LOOP END
             LOOP END
@@ -132,35 +144,47 @@ LOOP BEGIN at src/single_node_512.cpp(184,5)
    LOOP END
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(113,3) inlined into src/single_node_512.cpp(191,7)
+LOOP BEGIN at src/single_node_512.cpp(79,3) inlined into src/single_node_512.cpp(158,7)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_512.cpp(114,5) inlined into src/single_node_512.cpp(191,7)
+   LOOP BEGIN at src/single_node_512.cpp(80,5) inlined into src/single_node_512.cpp(158,7)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_512.cpp(115,7) inlined into src/single_node_512.cpp(191,7)
-         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+      LOOP BEGIN at src/single_node_512.cpp(81,7) inlined into src/single_node_512.cpp(158,7)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+         remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-         LOOP BEGIN at src/single_node_512.cpp(99,3) inlined into src/single_node_512.cpp(191,7)
-            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+         LOOP BEGIN at src/single_node_512.cpp(65,3) inlined into src/single_node_512.cpp(158,7)
+            remark #15344: loop was not vectorized: vector dependence prevents vectorization
+            remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+            remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-            LOOP BEGIN at src/single_node_512.cpp(100,5) inlined into src/single_node_512.cpp(191,7)
-               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+            LOOP BEGIN at src/single_node_512.cpp(66,5) inlined into src/single_node_512.cpp(158,7)
+               remark #15344: loop was not vectorized: vector dependence prevents vectorization
+               remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+               remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-               LOOP BEGIN at src/single_node_512.cpp(101,7) inlined into src/single_node_512.cpp(191,7)
-                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+               LOOP BEGIN at src/single_node_512.cpp(67,7) inlined into src/single_node_512.cpp(158,7)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                  remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                  LOOP BEGIN at src/single_node_512.cpp(28,3) inlined into src/single_node_512.cpp(191,7)
-                     remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                  LOOP BEGIN at src/single_node_512.cpp(18,3) inlined into src/single_node_512.cpp(158,7)
+                     remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                     remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                     remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                     LOOP BEGIN at src/single_node_512.cpp(31,5) inlined into src/single_node_512.cpp(191,7)
-                        remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                     LOOP BEGIN at src/single_node_512.cpp(21,5) inlined into src/single_node_512.cpp(158,7)
+                        remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                        remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                        remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                        LOOP BEGIN at src/single_node_512.cpp(49,7) inlined into src/single_node_512.cpp(191,7)
+                        LOOP BEGIN at src/single_node_512.cpp(31,7) inlined into src/single_node_512.cpp(158,7)
                            remark #15344: loop was not vectorized: vector dependence prevents vectorization
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
                         LOOP END
                      LOOP END
                   LOOP END
@@ -171,35 +195,47 @@ LOOP BEGIN at src/single_node_512.cpp(113,3) inlined into src/single_node_512.cp
    LOOP END
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(113,3) inlined into src/single_node_512.cpp(197,7)
+LOOP BEGIN at src/single_node_512.cpp(79,3) inlined into src/single_node_512.cpp(164,7)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_512.cpp(114,5) inlined into src/single_node_512.cpp(197,7)
+   LOOP BEGIN at src/single_node_512.cpp(80,5) inlined into src/single_node_512.cpp(164,7)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_512.cpp(115,7) inlined into src/single_node_512.cpp(197,7)
-         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+      LOOP BEGIN at src/single_node_512.cpp(81,7) inlined into src/single_node_512.cpp(164,7)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+         remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-         LOOP BEGIN at src/single_node_512.cpp(99,3) inlined into src/single_node_512.cpp(197,7)
-            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+         LOOP BEGIN at src/single_node_512.cpp(65,3) inlined into src/single_node_512.cpp(164,7)
+            remark #15344: loop was not vectorized: vector dependence prevents vectorization
+            remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+            remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-            LOOP BEGIN at src/single_node_512.cpp(100,5) inlined into src/single_node_512.cpp(197,7)
-               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+            LOOP BEGIN at src/single_node_512.cpp(66,5) inlined into src/single_node_512.cpp(164,7)
+               remark #15344: loop was not vectorized: vector dependence prevents vectorization
+               remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+               remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-               LOOP BEGIN at src/single_node_512.cpp(101,7) inlined into src/single_node_512.cpp(197,7)
-                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+               LOOP BEGIN at src/single_node_512.cpp(67,7) inlined into src/single_node_512.cpp(164,7)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                  remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                  LOOP BEGIN at src/single_node_512.cpp(28,3) inlined into src/single_node_512.cpp(197,7)
-                     remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                  LOOP BEGIN at src/single_node_512.cpp(18,3) inlined into src/single_node_512.cpp(164,7)
+                     remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                     remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                     remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                     LOOP BEGIN at src/single_node_512.cpp(31,5) inlined into src/single_node_512.cpp(197,7)
-                        remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                     LOOP BEGIN at src/single_node_512.cpp(21,5) inlined into src/single_node_512.cpp(164,7)
+                        remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                        remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                        remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                        LOOP BEGIN at src/single_node_512.cpp(49,7) inlined into src/single_node_512.cpp(197,7)
+                        LOOP BEGIN at src/single_node_512.cpp(31,7) inlined into src/single_node_512.cpp(164,7)
                            remark #15344: loop was not vectorized: vector dependence prevents vectorization
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
                         LOOP END
                      LOOP END
                   LOOP END
@@ -210,36 +246,36 @@ LOOP BEGIN at src/single_node_512.cpp(113,3) inlined into src/single_node_512.cp
    LOOP END
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(202,5)
-   remark #15382: vectorization support: call to function mat_mult_block(int, double *, double *, double *) cannot be vectorized   [ src/single_node_512.cpp(203,7) ]
+LOOP BEGIN at src/single_node_512.cpp(169,5)
+   remark #15382: vectorization support: call to function mat_mult_block(int, double *, double *, double *) cannot be vectorized   [ src/single_node_512.cpp(170,7) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(214,3)
-   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_512.cpp(216,7) ]
-   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_512.cpp(218,5) ]
+LOOP BEGIN at src/single_node_512.cpp(181,3)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_512.cpp(183,7) ]
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_512.cpp(185,5) ]
    remark #15344: loop was not vectorized: vector dependence prevents vectorization
-   remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (216:7) and call:printf(const char *, ...) (218:5)
-   remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (218:5) and call:printf(const char *, ...) (216:7)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (183:7) and call:printf(const char *, ...) (185:5)
+   remark #15346: vector dependence: assumed OUTPUT dependence between call:printf(const char *, ...) (185:5) and call:printf(const char *, ...) (183:7)
 
-   LOOP BEGIN at src/single_node_512.cpp(215,5)
-      remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_512.cpp(216,7) ]
+   LOOP BEGIN at src/single_node_512.cpp(182,5)
+      remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/single_node_512.cpp(183,7) ]
       remark #15344: loop was not vectorized: vector dependence prevents vectorization
    LOOP END
 
-   LOOP BEGIN at src/single_node_512.cpp(215,5)
+   LOOP BEGIN at src/single_node_512.cpp(182,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_512.cpp(215,5)
+   LOOP BEGIN at src/single_node_512.cpp(182,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_512.cpp(215,5)
+   LOOP BEGIN at src/single_node_512.cpp(182,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_512.cpp(215,5)
+   LOOP BEGIN at src/single_node_512.cpp(182,5)
    LOOP END
 
-   LOOP BEGIN at src/single_node_512.cpp(215,5)
+   LOOP BEGIN at src/single_node_512.cpp(182,5)
    LOOP END
 LOOP END
 
@@ -247,20 +283,20 @@ LOOP END
 Non-optimizable loops:
 
 
-LOOP BEGIN at src/single_node_512.cpp(190,5)
+LOOP BEGIN at src/single_node_512.cpp(157,5)
    remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
 LOOP END
 
-LOOP BEGIN at src/single_node_512.cpp(196,5)
+LOOP BEGIN at src/single_node_512.cpp(163,5)
    remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
 
-   LOOP BEGIN at src/single_node_512.cpp(127,3) inlined into src/single_node_512.cpp(197,7)
+   LOOP BEGIN at src/single_node_512.cpp(93,3) inlined into src/single_node_512.cpp(164,7)
       remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
 
-      LOOP BEGIN at src/single_node_512.cpp(128,5) inlined into src/single_node_512.cpp(197,7)
+      LOOP BEGIN at src/single_node_512.cpp(94,5) inlined into src/single_node_512.cpp(164,7)
          remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
 
-         LOOP BEGIN at src/single_node_512.cpp(129,7) inlined into src/single_node_512.cpp(197,7)
+         LOOP BEGIN at src/single_node_512.cpp(95,7) inlined into src/single_node_512.cpp(164,7)
             remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
          LOOP END
       LOOP END
@@ -273,19 +309,23 @@ Begin optimization report for: mat_mult_block(int, double *, double *, double *)
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_512.cpp(28,3)
-   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+LOOP BEGIN at src/single_node_512.cpp(18,3)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+   remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-   LOOP BEGIN at src/single_node_512.cpp(31,5)
-      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   LOOP BEGIN at src/single_node_512.cpp(21,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+      remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-      LOOP BEGIN at src/single_node_512.cpp(49,7)
+      LOOP BEGIN at src/single_node_512.cpp(31,7)
       <Peeled>
          remark #15344: loop was not vectorized: vector dependence prevents vectorization
-         remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
-         remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-         remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-         remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
+         remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
+         remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+         remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+         remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
       LOOP END
    LOOP END
 LOOP END
@@ -296,28 +336,38 @@ Begin optimization report for: tiled_level_3(int, int, double *, double *, doubl
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_512.cpp(99,3)
-   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+LOOP BEGIN at src/single_node_512.cpp(65,3)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+   remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-   LOOP BEGIN at src/single_node_512.cpp(100,5)
-      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+   LOOP BEGIN at src/single_node_512.cpp(66,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+      remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-      LOOP BEGIN at src/single_node_512.cpp(101,7)
-         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+      LOOP BEGIN at src/single_node_512.cpp(67,7)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+         remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-         LOOP BEGIN at src/single_node_512.cpp(28,3) inlined into src/single_node_512.cpp(102,9)
-            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+         LOOP BEGIN at src/single_node_512.cpp(18,3) inlined into src/single_node_512.cpp(68,9)
+            remark #15344: loop was not vectorized: vector dependence prevents vectorization
+            remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+            remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-            LOOP BEGIN at src/single_node_512.cpp(31,5) inlined into src/single_node_512.cpp(102,9)
-               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+            LOOP BEGIN at src/single_node_512.cpp(21,5) inlined into src/single_node_512.cpp(68,9)
+               remark #15344: loop was not vectorized: vector dependence prevents vectorization
+               remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+               remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-               LOOP BEGIN at src/single_node_512.cpp(49,7) inlined into src/single_node_512.cpp(102,9)
+               LOOP BEGIN at src/single_node_512.cpp(31,7) inlined into src/single_node_512.cpp(68,9)
                <Peeled>
                   remark #15344: loop was not vectorized: vector dependence prevents vectorization
-                  remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
-                  remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                  remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                  remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
+                  remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
+                  remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                  remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                  remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
                LOOP END
             LOOP END
          LOOP END
@@ -331,35 +381,47 @@ Begin optimization report for: tiled_level_2(int, int, double *, double *, doubl
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_512.cpp(113,3)
+LOOP BEGIN at src/single_node_512.cpp(79,3)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_512.cpp(114,5)
+   LOOP BEGIN at src/single_node_512.cpp(80,5)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_512.cpp(115,7)
-         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+      LOOP BEGIN at src/single_node_512.cpp(81,7)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+         remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-         LOOP BEGIN at src/single_node_512.cpp(99,3) inlined into src/single_node_512.cpp(116,9)
-            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+         LOOP BEGIN at src/single_node_512.cpp(65,3) inlined into src/single_node_512.cpp(82,9)
+            remark #15344: loop was not vectorized: vector dependence prevents vectorization
+            remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+            remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-            LOOP BEGIN at src/single_node_512.cpp(100,5) inlined into src/single_node_512.cpp(116,9)
-               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+            LOOP BEGIN at src/single_node_512.cpp(66,5) inlined into src/single_node_512.cpp(82,9)
+               remark #15344: loop was not vectorized: vector dependence prevents vectorization
+               remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+               remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-               LOOP BEGIN at src/single_node_512.cpp(101,7) inlined into src/single_node_512.cpp(116,9)
-                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+               LOOP BEGIN at src/single_node_512.cpp(67,7) inlined into src/single_node_512.cpp(82,9)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                  remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                  LOOP BEGIN at src/single_node_512.cpp(28,3) inlined into src/single_node_512.cpp(116,9)
-                     remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                  LOOP BEGIN at src/single_node_512.cpp(18,3) inlined into src/single_node_512.cpp(82,9)
+                     remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                     remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                     remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                     LOOP BEGIN at src/single_node_512.cpp(31,5) inlined into src/single_node_512.cpp(116,9)
-                        remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                     LOOP BEGIN at src/single_node_512.cpp(21,5) inlined into src/single_node_512.cpp(82,9)
+                        remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                        remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                        remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                        LOOP BEGIN at src/single_node_512.cpp(49,7) inlined into src/single_node_512.cpp(116,9)
+                        LOOP BEGIN at src/single_node_512.cpp(31,7) inlined into src/single_node_512.cpp(82,9)
                            remark #15344: loop was not vectorized: vector dependence prevents vectorization
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
                         LOOP END
                      LOOP END
                   LOOP END
@@ -376,35 +438,47 @@ Begin optimization report for: tiled_level_1(int, int, int, int, double *, doubl
     Report from: Vector & Auto-parallelization optimizations [vec, par]
 
 
-LOOP BEGIN at src/single_node_512.cpp(113,3) inlined into src/single_node_512.cpp(130,9)
+LOOP BEGIN at src/single_node_512.cpp(79,3) inlined into src/single_node_512.cpp(96,9)
    remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-   LOOP BEGIN at src/single_node_512.cpp(114,5) inlined into src/single_node_512.cpp(130,9)
+   LOOP BEGIN at src/single_node_512.cpp(80,5) inlined into src/single_node_512.cpp(96,9)
       remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
 
-      LOOP BEGIN at src/single_node_512.cpp(115,7) inlined into src/single_node_512.cpp(130,9)
-         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+      LOOP BEGIN at src/single_node_512.cpp(81,7) inlined into src/single_node_512.cpp(96,9)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+         remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-         LOOP BEGIN at src/single_node_512.cpp(99,3) inlined into src/single_node_512.cpp(130,9)
-            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+         LOOP BEGIN at src/single_node_512.cpp(65,3) inlined into src/single_node_512.cpp(96,9)
+            remark #15344: loop was not vectorized: vector dependence prevents vectorization
+            remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+            remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-            LOOP BEGIN at src/single_node_512.cpp(100,5) inlined into src/single_node_512.cpp(130,9)
-               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+            LOOP BEGIN at src/single_node_512.cpp(66,5) inlined into src/single_node_512.cpp(96,9)
+               remark #15344: loop was not vectorized: vector dependence prevents vectorization
+               remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+               remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-               LOOP BEGIN at src/single_node_512.cpp(101,7) inlined into src/single_node_512.cpp(130,9)
-                  remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+               LOOP BEGIN at src/single_node_512.cpp(67,7) inlined into src/single_node_512.cpp(96,9)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                  remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                  LOOP BEGIN at src/single_node_512.cpp(28,3) inlined into src/single_node_512.cpp(130,9)
-                     remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                  LOOP BEGIN at src/single_node_512.cpp(18,3) inlined into src/single_node_512.cpp(96,9)
+                     remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                     remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                     remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                     LOOP BEGIN at src/single_node_512.cpp(31,5) inlined into src/single_node_512.cpp(130,9)
-                        remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+                     LOOP BEGIN at src/single_node_512.cpp(21,5) inlined into src/single_node_512.cpp(96,9)
+                        remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                        remark #15346: vector dependence: assumed ANTI dependence between (C+i_n*8)[J] (23:22) and (C+i_n*8+thN*8)[J+8] (57:7)
+                        remark #15346: vector dependence: assumed FLOW dependence between (C+i_n*8+thN*8)[J+8] (57:7) and (C+i_n*8)[J] (23:22)
 
-                        LOOP BEGIN at src/single_node_512.cpp(49,7) inlined into src/single_node_512.cpp(130,9)
+                        LOOP BEGIN at src/single_node_512.cpp(31,7) inlined into src/single_node_512.cpp(96,9)
                            remark #15344: loop was not vectorized: vector dependence prevents vectorization
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (56:16) and c0_0 (56:16)
-                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (56:16) and c0_0 (56:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed FLOW dependence between c0_0 (38:16) and c0_0 (38:16)
+                           remark #15346: vector dependence: assumed ANTI dependence between c0_0 (38:16) and c0_0 (38:16)
                         LOOP END
                      LOOP END
                   LOOP END
@@ -419,13 +493,13 @@ LOOP END
 Non-optimizable loops:
 
 
-LOOP BEGIN at src/single_node_512.cpp(127,3)
+LOOP BEGIN at src/single_node_512.cpp(93,3)
    remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
 
-   LOOP BEGIN at src/single_node_512.cpp(128,5)
+   LOOP BEGIN at src/single_node_512.cpp(94,5)
       remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
 
-      LOOP BEGIN at src/single_node_512.cpp(129,7)
+      LOOP BEGIN at src/single_node_512.cpp(95,7)
          remark #15522: loop was not vectorized: loop control flow is too complex. Try using canonical loop form from OpenMP specification
       LOOP END
    LOOP END

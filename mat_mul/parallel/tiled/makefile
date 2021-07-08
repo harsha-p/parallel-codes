@@ -4,15 +4,23 @@ BUILDDIR := release
 LIBFLAGS := -qopenmp -qopenmp-simd -Ofast -qopt-report=5 -qopt-report-phase=vec,openmp,par
 LIBAVX512 := -xCORE-AVX512 -qopt-zmm-usage=high
 LIBAVX2 := -xCORE-AVX2
-all: $(BUILDDIR)/single_node_256 $(BUILDDIR)/single_node_512
+all: $(BUILDDIR)/single_node_256 $(BUILDDIR)/single_node_512 $(BUILDDIR)/single_node_256_bt $(BUILDDIR)/single_node_512_bt
 	
 
 $(BUILDDIR)/single_node_256: $(SRCDIR)/single_node_256.cpp
 	@mkdir -p $(BUILDDIR)
 	$(CC) $(CFLAGS) $< $(LIBFLAGS) $(LIBAVX2) -o $@
 
+$(BUILDDIR)/single_node_256_bt: $(SRCDIR)/single_node_256_bt.cpp
+	@mkdir -p $(BUILDDIR)
+	$(CC) $(CFLAGS) $< $(LIBFLAGS) $(LIBAVX2) -o $@
+
 
 $(BUILDDIR)/single_node_512: $(SRCDIR)/single_node_512.cpp
+	@mkdir -p $(BUILDDIR)
+	$(CC) $(CFLAGS) $< $(LIBFLAGS) $(LIBAVX512) -o $@
+
+$(BUILDDIR)/single_node_512_bt: $(SRCDIR)/single_node_512_bt.cpp
 	@mkdir -p $(BUILDDIR)
 	$(CC) $(CFLAGS) $< $(LIBFLAGS) $(LIBAVX512) -o $@
 

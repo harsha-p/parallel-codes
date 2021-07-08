@@ -29,11 +29,10 @@ void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
       __m512d c3_0 = _mm512_load_pd(C + i_n + thN + J);
       __m512d c3_1 = _mm512_load_pd(C + i_n + thN + J + 8);
       for (int k = 0; k < tile3; k++) {
-        int K = k * P;
-        __m512d b0 = _mm512_load_pd(B + K + J);
-        __m512d b1 = _mm512_load_pd(B + K + J + 8);
-        __m512d b2 = _mm512_load_pd(B + K + J + 16);
-        __m512d b3 = _mm512_load_pd(B + K + J + 24);
+        __m512d b0 = _mm512_load_pd(B + k + P*J);
+        __m512d b1 = _mm512_load_pd(B + k + P*J + 8);
+        __m512d b2 = _mm512_load_pd(B + k + P*J + 16);
+        __m512d b3 = _mm512_load_pd(B + k + P*J + 24);
         __m512d a00 = _mm512_set1_pd(*(A + i_n + k));
         c0_0 = _mm512_fmadd_pd(a00, b0, c0_0);
         c0_1 = _mm512_fmadd_pd(a00, b1, c0_1);
@@ -66,7 +65,7 @@ void tiled_level_3(int tile2, int tile3, double *__restrict__ A,
     for (int jh = 0; jh < t3t2; jh++) {
       for (int kh = 0; kh < t3t2; kh++) {
         mat_mult_block(TILE3, A + ih * tile3 * P + kh * tile3,
-                       B + jh * tile3 + kh * tile3 * P,
+                       B + kh * tile3 + jh * tile3 * P,
                        C + ih * tile3 *P + jh * tile3 );
       }
     }
@@ -80,7 +79,7 @@ void tiled_level_2(int tile1, int tile2, double *__restrict__ A,
     for (int jm = 0; jm < t2t1; jm++) {
       for (int km = 0; km < t2t1; km++) {
         tiled_level_3(tile2, TILE3, A + im * tile2 * P + km * tile2,
-                      B + jm * tile2 + km * tile2 * P,
+                      B + km * tile2 + jm * tile2 * P,
                       C + jm * tile2 + im * tile2 * P);
       }
     }
@@ -94,7 +93,7 @@ void tiled_level_1(int tile1, int m, int n, int p, double *__restrict__ A,
     for (int j = 0; j < jn; j++) {
       for (int k = 0; k < kp; k++) {
         tiled_level_2(tile1, TILE2, A + i * tile1 * P + k * tile1,
-                      B + j * tile1 + k * tile1 * P,
+                      B + k * tile1 + j * tile1 * P,
                       C + j * tile1 + i * tile1 * P);
       }
     }
