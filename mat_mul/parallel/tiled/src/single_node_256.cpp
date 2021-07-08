@@ -6,11 +6,12 @@
 #define min(a, b) (((a) < (b) ? (a) : (b)))
 #define max(a, b) (((a) > (b) ? (a) : (b)))
 
-int TILE1 =  64;
-int TILE2 =  64;
-int TILE3 =  16;
-//145 for l3 t3=32 , t3016
-//150 for l2 t3=32 t2=64
+int TILE1 = 64;
+int TILE2 = 64;
+int TILE3 = 16;
+int TILING_LEVEL = 3;
+// 145 for l3 t3=32 , t3016
+// 150 for l2 t3=32 t2=64
 int M, N, P;
 
 void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
@@ -89,7 +90,7 @@ void tiled_level_3(int tile2, int tile3, double *__restrict__ A,
   for (il = 0; il < tile2; il += tile3) {
     for (jl = 0; jl < tile2; jl += tile3) {
       for (kl = 0; kl < tile2; kl += tile3) {
-        mat_mult_block(TILE3, A + il * P + jl, B + jl * P + kl,
+        mat_mult_block(TILE3, A + il * P + jl, B + kl + P * jl,
                        C + il * P + kl);
       }
     }
@@ -102,7 +103,7 @@ void tiled_level_2(int tile1, int tile2, double *__restrict__ A,
   for (im = 0; im < tile1; im += tile2) {
     for (jm = 0; jm < tile1; jm += tile2) {
       for (km = 0; km < tile1; km += tile2) {
-        tiled_level_3(tile2, TILE3, A + im * P + jm, B + jm * P + km,
+        tiled_level_3(tile2, TILE3, A + im * P + jm, B + km + P * jm,
                       C + im * P + km);
       }
     }
@@ -115,7 +116,7 @@ void tiled_level_1(int tile1, int m, int n, int p, double *__restrict__ A,
   for (i = 0; i < m; i += tile1) {
     for (j = 0; j < n; j += tile1) {
       for (k = 0; k < p; k += tile1) {
-        tiled_level_2(tile1, TILE2, A + i * P + j, B + j * P + k,
+        tiled_level_2(tile1, TILE2, A + i * P + j, B + k + P * j,
                       C + i * P + k);
       }
     }
@@ -123,22 +124,24 @@ void tiled_level_1(int tile1, int m, int n, int p, double *__restrict__ A,
 }
 
 int main(int argc, char *argv[]) {
-  int i, j, LOOP_COUNT = 10;
+  int i, j, LOOP_COUNT = 100;
   double start, time;
 
   M = 1024;
   N = 1024;
   P = 1024;
+  // matrix size ; loop count; tiling level; tile sizes;
 
-  if (argc >= 4) {
-    TILE1 = atoi(argv[1]);
-    TILE2 = atoi(argv[2]);
-    TILE3 = atoi(argv[3]);
+  if (argc < 7) {
+    printf("not enough arguments\n");
+    return 0;
   }
-  if (argc == 5)
-    LOOP_COUNT = atoi(argv[4]);
-  if (argc == 2)
-    LOOP_COUNT = atoi(argv[1]);
+  M = N = P = atoi(argv[1]);
+  LOOP_COUNT = atoi(argv[2]);
+  TILING_LEVEL = atoi(argv[3]);
+  TILE1 = atoi(argv[4]);
+  TILE2 = atoi(argv[5]);
+  TILE3 = atoi(argv[6]);
 
   int size_a = M * P * sizeof(double);
   int size_b = P * N * sizeof(double);
@@ -159,23 +162,50 @@ int main(int argc, char *argv[]) {
     C[i] = 0.0;
   }
 
-  printf("Matrix Dimensions: M = %d  P = %d  N = %d\n\n", M, P, N);
-  start = omp_get_wtime();
-  for (i = 0; i < LOOP_COUNT; i++) {
-    tiled_level_1(TILE1, M, N, P, A, B, C);
-    /* tiled_level_2(1024 , TILE2 , A, B, C); */
-    /* tiled_level_3(1024, TILE3, A, B, C); */
-    /* mat_mult_block(1024, A, B, C); */
+  printf("Using AVX2\n");
+  printf("Matrix: M = %d  P = %d  N = %d\n", M, P, N);
+  printf("LOOP_COUNT: %d TILING_LEVEL: %d\n", LOOP_COUNT,TILING_LEVEL);
+  printf("TILE SIZES: TILE1 = %d  TILE2 = %d  TILE3 = %d\n", TILE1,TILE2,TILE3);
+
+  if (TILING_LEVEL == 1) {
+    start = omp_get_wtime();
+    for (i = 0; i < LOOP_COUNT; i++) {
+      tiled_level_3(M, TILE3, A, B, C);
+    }
+    time = (omp_get_wtime() - start) / LOOP_COUNT;
+  } else if (TILING_LEVEL == 2) {
+    start = omp_get_wtime();
+    for (i = 0; i < LOOP_COUNT; i++) {
+      tiled_level_2(M, TILE2, A, B, C);
+    }
+    time = (omp_get_wtime() - start) / LOOP_COUNT;
+  } else if (TILING_LEVEL == 3) {
+    start = omp_get_wtime();
+    for (i = 0; i < LOOP_COUNT; i++) {
+      tiled_level_1(TILE1, M, N, P, A, B, C);
+    }
+    time = (omp_get_wtime() - start) / LOOP_COUNT;
+  } else if (TILING_LEVEL == 0) {
+    start = omp_get_wtime();
+    for (i = 0; i < LOOP_COUNT; i++) {
+      mat_mult_block(M, A, B, C);
+    }
+    time = (omp_get_wtime() - start) / LOOP_COUNT;
+  } else {
+    printf("invalid tiling level\n");
+    return 0;
   }
-  time = (omp_get_wtime() - start) / LOOP_COUNT;
-  printf("Time = %.5f milli seconds\n\n", time * 1000);
-  printf("\n");
+
+  printf("TIME: %.5f\n\n", time * 1000);
+  fprintf(stderr,"%.5f\n",time*1000);
+
   for (int i = 0; i < 6; i++) {
     for (int j = 0; j < 6; j++) {
       printf("%12.5G", C[i * N + j]);
     }
     printf("\n");
   }
+
   _mm_free(A);
   _mm_free(B);
   _mm_free(C);
@@ -190,6 +220,7 @@ int main(int argc, char *argv[]) {
            "reliability \n"
            " of measurements\n\n",
            i);
+	fprintf(stderr,"%i\n",i);
   }
-  return 0;
+  return time;
 }
