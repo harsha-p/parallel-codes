@@ -35,10 +35,10 @@ void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
       __m256d c3_2 = _mm256_load_pd(C + ((4 * i + 3) * N) + j * 16 + 8);
       __m256d c3_3 = _mm256_load_pd(C + ((4 * i + 3) * N) + j * 16 + 12);
       for (int k = 0; k < tile3; k++) {
-        __m256d b0 = _mm256_load_pd(B + k * P+(j * 16));
-        __m256d b1 = _mm256_load_pd(B + k * P+(j * 16 + 4));
-        __m256d b2 = _mm256_load_pd(B + k * P+(j * 16 + 8));
-        __m256d b3 = _mm256_load_pd(B + k * P+(j * 16 + 12));
+        __m256d b0 = _mm256_load_pd(B + k + P*(j * 16));
+        __m256d b1 = _mm256_load_pd(B + k + P*(j * 16 + 4));
+        __m256d b2 = _mm256_load_pd(B + k + P*(j * 16 + 8));
+        __m256d b3 = _mm256_load_pd(B + k + P*(j * 16 + 12));
         __m256d a00 = _mm256_broadcast_sd(A + ((4 * i) * N) + k);
         c0_0 = _mm256_fmadd_pd(a00, b0, c0_0);
         c0_1 = _mm256_fmadd_pd(a00, b0, c0_1);
@@ -86,7 +86,7 @@ void tiled_level_3(int tile2, int tile3, double *__restrict__ A,
   for (il = 0; il < tile2; il += tile3) {
     for (jl = 0; jl < tile2; jl += tile3) {
       for (kl = 0; kl < tile2; kl += tile3) {
-        mat_mult_block(TILE3, A + il * P + kl, B + kl * P + jl,
+        mat_mult_block(TILE3, A + il * P + kl, B + kl + P * jl,
                        C + il * P + jl);
       }
     }
@@ -100,7 +100,7 @@ void tiled_level_2(int tile1, int tile2, double *__restrict__ A,
   for (im = 0; im < tile1; im += tile2) {
     for (jm = 0; jm < tile1; jm += tile2) {
       for (km = 0; km < tile1; km += tile2) {
-        tiled_level_3(tile2, TILE3, A + im * P + km, B + km * P + jm,
+        tiled_level_3(tile2, TILE3, A + im * P + km, B + km + P * jm,
                       C + im * P + jm);
       }
     }
@@ -114,7 +114,7 @@ void tiled_level_1(int tile1, int m, int n, int p, double *__restrict__ A,
   for (i = 0; i < m; i += tile1) {
     for (j = 0; j < n; j += tile1) {
       for (k = 0; k < p; k += tile1) {
-        tiled_level_2(tile1, TILE2, A + i * P + k, B + k * P + j,
+        tiled_level_2(tile1, TILE2, A + i * P + k, B + k + P * j,
                       C + i * P + j);
       }
     }
