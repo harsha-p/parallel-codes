@@ -62,6 +62,7 @@ void mat_mult_block(int tile3, double *__restrict__ A, double *__restrict__ B,
 void tiled_level_3(int tile2, int tile3, double *__restrict__ A,
                    double *__restrict__ B, double *__restrict__ C) {
   int t3t2 = tile2 / tile3;
+#pragma omp parallel for collapse(3)
   for (int ih = 0; ih < t3t2; ih++) {
     for (int jh = 0; jh < t3t2; jh++) {
       for (int kh = 0; kh < t3t2; kh++) {
@@ -76,6 +77,7 @@ void tiled_level_3(int tile2, int tile3, double *__restrict__ A,
 void tiled_level_2(int tile1, int tile2, double *__restrict__ A,
                    double *__restrict__ B, double *__restrict__ C) {
   int t2t1 = tile1 / tile2;
+#pragma omp parallel for collapse(3)
   for (int im = 0; im < t2t1; im++) {
     for (int jm = 0; jm < t2t1; jm++) {
       for (int km = 0; km < t2t1; km++) {
@@ -90,6 +92,7 @@ void tiled_level_2(int tile1, int tile2, double *__restrict__ A,
 void tiled_level_1(int tile1, int m, int n, int p, double *__restrict__ A,
                    double *__restrict__ B, double *__restrict__ C) {
   int im = m / tile1, jn = n / tile1, kp = p / tile1;
+#pragma omp parallel for collapse(3)
   for (int i = 0; i < im; i++) {
     for (int j = 0; j < jn; j++) {
       for (int k = 0; k < kp; k++) {
